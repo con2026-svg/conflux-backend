@@ -1,8 +1,10 @@
 using ConFlux.Data;
 using ConFlux.Services;
+using ConfluxApp.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using OpenAI;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +23,13 @@ builder.Services.AddCors(options =>
                   .AllowAnyMethod()
                   .AllowCredentials();
         });
+});
+
+builder.Services.AddHttpClient<OpenAIService>(client =>
+{
+    client.BaseAddress = new Uri("https://api.openai.com/v1/");
+    string apiKey = builder.Configuration["OpenAI:ApiKey"] ?? "";
+    client.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
 });
 
 

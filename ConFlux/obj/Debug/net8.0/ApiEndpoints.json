@@ -32,6 +32,32 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ConfluxApp.Controllers.ChatController",
+    "Method": "PostQuestion",
+    "RelativePath": "api/Chat",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "ConFlux.DTOs.OpenAiDtos\u002BQuestionRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ConFlux.DTOs.OpenAiDtos\u002BAnswerResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "ConFlux.Controllers.CodebooksController",
     "Method": "GetAll",
     "RelativePath": "api/Codebooks/{type}",

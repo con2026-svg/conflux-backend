@@ -101,6 +101,7 @@ namespace ConFlux.Controllers
         {
             var items = await _context.PriceItems
                 .Include(p => p.ObjectType)
+                .Include(p => p.Category)
                 .Include(p => p.Region)
                 .Include(p => p.Period)
                 .Include(p => p.WorkType)
