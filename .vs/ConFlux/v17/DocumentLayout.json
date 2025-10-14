@@ -1,0 +1,171 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Ivan\\source\\repos\\ConFlux\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{706548D0-7C95-413F-A130-443889C6F782}|ConFlux\\ConFlux.csproj|c:\\users\\ivan\\source\\repos\\conflux\\conflux\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{706548D0-7C95-413F-A130-443889C6F782}|ConFlux\\ConFlux.csproj|solutionrelative:conflux\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{706548D0-7C95-413F-A130-443889C6F782}|ConFlux\\ConFlux.csproj|c:\\users\\ivan\\source\\repos\\conflux\\conflux\\controllers\\priceitemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{706548D0-7C95-413F-A130-443889C6F782}|ConFlux\\ConFlux.csproj|solutionrelative:conflux\\controllers\\priceitemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{706548D0-7C95-413F-A130-443889C6F782}|ConFlux\\ConFlux.csproj|c:\\users\\ivan\\source\\repos\\conflux\\conflux\\services\\priceitemservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{706548D0-7C95-413F-A130-443889C6F782}|ConFlux\\ConFlux.csproj|solutionrelative:conflux\\services\\priceitemservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{706548D0-7C95-413F-A130-443889C6F782}|ConFlux\\ConFlux.csproj|c:\\users\\ivan\\source\\repos\\conflux\\conflux\\conflux.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{706548D0-7C95-413F-A130-443889C6F782}|ConFlux\\ConFlux.csproj|solutionrelative:conflux\\conflux.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{706548D0-7C95-413F-A130-443889C6F782}|ConFlux\\ConFlux.csproj|c:\\users\\ivan\\source\\repos\\conflux\\conflux\\model\\priceitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{706548D0-7C95-413F-A130-443889C6F782}|ConFlux\\ConFlux.csproj|solutionrelative:conflux\\model\\priceitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{706548D0-7C95-413F-A130-443889C6F782}|ConFlux\\ConFlux.csproj|c:\\users\\ivan\\source\\repos\\conflux\\conflux\\controllers\\codebookscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{706548D0-7C95-413F-A130-443889C6F782}|ConFlux\\ConFlux.csproj|solutionrelative:conflux\\controllers\\codebookscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{706548D0-7C95-413F-A130-443889C6F782}|ConFlux\\ConFlux.csproj|c:\\users\\ivan\\source\\repos\\conflux\\conflux\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{706548D0-7C95-413F-A130-443889C6F782}|ConFlux\\ConFlux.csproj|solutionrelative:conflux\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{706548D0-7C95-413F-A130-443889C6F782}|ConFlux\\ConFlux.csproj|c:\\users\\ivan\\source\\repos\\conflux\\conflux\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{706548D0-7C95-413F-A130-443889C6F782}|ConFlux\\ConFlux.csproj|solutionrelative:conflux\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{706548D0-7C95-413F-A130-443889C6F782}|ConFlux\\ConFlux.csproj|c:\\users\\ivan\\source\\repos\\conflux\\conflux\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{706548D0-7C95-413F-A130-443889C6F782}|ConFlux\\ConFlux.csproj|solutionrelative:conflux\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PriceItemService.cs",
+              "DocumentMoniker": "C:\\Users\\Ivan\\source\\repos\\ConFlux\\ConFlux\\Services\\PriceItemService.cs",
+              "RelativeDocumentMoniker": "ConFlux\\Services\\PriceItemService.cs",
+              "ToolTip": "C:\\Users\\Ivan\\source\\repos\\ConFlux\\ConFlux\\Services\\PriceItemService.cs",
+              "RelativeToolTip": "ConFlux\\Services\\PriceItemService.cs",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAcwGEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-12T20:16:41.397Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ConFlux",
+              "DocumentMoniker": "C:\\Users\\Ivan\\source\\repos\\ConFlux\\ConFlux\\ConFlux.csproj",
+              "RelativeDocumentMoniker": "ConFlux\\ConFlux.csproj",
+              "ToolTip": "C:\\Users\\Ivan\\source\\repos\\ConFlux\\ConFlux\\ConFlux.csproj",
+              "RelativeToolTip": "ConFlux\\ConFlux.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-10-12T20:16:02.813Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PriceItem.cs",
+              "DocumentMoniker": "C:\\Users\\Ivan\\source\\repos\\ConFlux\\ConFlux\\Model\\PriceItem.cs",
+              "RelativeDocumentMoniker": "ConFlux\\Model\\PriceItem.cs",
+              "ToolTip": "C:\\Users\\Ivan\\source\\repos\\ConFlux\\ConFlux\\Model\\PriceItem.cs",
+              "RelativeToolTip": "ConFlux\\Model\\PriceItem.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABEAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-12T09:08:51.489Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PriceItemController.cs",
+              "DocumentMoniker": "C:\\Users\\Ivan\\source\\repos\\ConFlux\\ConFlux\\Controllers\\PriceItemController.cs",
+              "RelativeDocumentMoniker": "ConFlux\\Controllers\\PriceItemController.cs",
+              "ToolTip": "C:\\Users\\Ivan\\source\\repos\\ConFlux\\ConFlux\\Controllers\\PriceItemController.cs",
+              "RelativeToolTip": "ConFlux\\Controllers\\PriceItemController.cs",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAIwF4AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-12T08:35:56.615Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CodebooksController.cs",
+              "DocumentMoniker": "C:\\Users\\Ivan\\source\\repos\\ConFlux\\ConFlux\\Controllers\\CodebooksController.cs",
+              "RelativeDocumentMoniker": "ConFlux\\Controllers\\CodebooksController.cs",
+              "ToolTip": "C:\\Users\\Ivan\\source\\repos\\ConFlux\\ConFlux\\Controllers\\CodebooksController.cs",
+              "RelativeToolTip": "ConFlux\\Controllers\\CodebooksController.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAowFIAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-11T21:22:14.01Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\Ivan\\source\\repos\\ConFlux\\ConFlux\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "ConFlux\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\Ivan\\source\\repos\\ConFlux\\ConFlux\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "ConFlux\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAHEAAAAAAAAAAAAQwF8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-11T07:07:09.045Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Ivan\\source\\repos\\ConFlux\\ConFlux\\Program.cs",
+              "RelativeDocumentMoniker": "ConFlux\\Program.cs",
+              "ToolTip": "C:\\Users\\Ivan\\source\\repos\\ConFlux\\ConFlux\\Program.cs",
+              "RelativeToolTip": "ConFlux\\Program.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAAADEAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-11T07:04:18.255Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Ivan\\source\\repos\\ConFlux\\ConFlux\\appsettings.json",
+              "RelativeDocumentMoniker": "ConFlux\\appsettings.json",
+              "ToolTip": "C:\\Users\\Ivan\\source\\repos\\ConFlux\\ConFlux\\appsettings.json",
+              "RelativeToolTip": "ConFlux\\appsettings.json",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-11T07:02:25.706Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Ivan\\source\\repos\\ConFlux\\ConFlux\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "ConFlux\\Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\Ivan\\source\\repos\\ConFlux\\ConFlux\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "ConFlux\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAMwBUAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-11T07:01:43.333Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

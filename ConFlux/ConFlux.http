@@ -1,0 +1,6 @@
+@ConFlux_HostAddress = http://localhost:5267
+
+GET {{ConFlux_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
