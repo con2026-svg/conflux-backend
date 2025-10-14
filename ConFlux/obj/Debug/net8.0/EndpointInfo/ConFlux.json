@@ -191,7 +191,7 @@
         }
       }
     },
-    "/api/PriceItem": {
+    "/api/PriceItem/priceentry": {
       "post": {
         "tags": [
           "PriceItem"
@@ -318,6 +318,61 @@
         }
       }
     },
+    "/api/PriceItem/savelog": {
+      "post": {
+        "tags": [
+          "PriceItem"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPriceRequestLogDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPriceRequestLogDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPriceRequestLogDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/PriceItem/userlogs": {
+      "get": {
+        "tags": [
+          "PriceItem"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/PriceItem/logs": {
+      "get": {
+        "tags": [
+          "PriceItem"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/WeatherForecast": {
       "get": {
         "tags": [
@@ -422,6 +477,56 @@
         "type": "object",
         "properties": {
           "question": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserPriceRequestLogDto": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "m2": {
+            "type": "number",
+            "format": "double"
+          },
+          "regionId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "priceCategoryId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "periodId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "structure": {
+            "type": "string",
+            "nullable": true
+          },
+          "opis": {
+            "type": "string",
+            "nullable": true
+          },
+          "napomena": {
+            "type": "string",
+            "nullable": true
+          },
+          "parcelData": {
+            "type": "string",
+            "nullable": true
+          },
+          "aiPrompt": {
+            "type": "string",
+            "nullable": true
+          },
+          "aiResponse": {
             "type": "string",
             "nullable": true
           }

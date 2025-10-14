@@ -75,22 +75,6 @@
   },
   {
     "ContainingType": "ConFlux.Controllers.PriceItemController",
-    "Method": "Create",
-    "RelativePath": "api/PriceItem",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dto",
-        "Type": "ConFlux.DTOs.PriceItemDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "ConFlux.Controllers.PriceItemController",
     "Method": "GetById",
     "RelativePath": "api/PriceItem/{id}",
     "HttpMethod": "GET",
@@ -154,6 +138,32 @@
   },
   {
     "ContainingType": "ConFlux.Controllers.PriceItemController",
+    "Method": "GetLogs",
+    "RelativePath": "api/PriceItem/logs",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ConFlux.Controllers.PriceItemController",
+    "Method": "Create",
+    "RelativePath": "api/PriceItem/priceentry",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "ConFlux.DTOs.PriceItemDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ConFlux.Controllers.PriceItemController",
     "Method": "GetPrices",
     "RelativePath": "api/PriceItem/prices",
     "HttpMethod": "GET",
@@ -186,6 +196,32 @@
         "IsRequired": false
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ConFlux.Controllers.PriceItemController",
+    "Method": "CreateLog",
+    "RelativePath": "api/PriceItem/savelog",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "ConFlux.DTOs.UserPriceRequestLogDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ConFlux.Controllers.PriceItemController",
+    "Method": "GetLogs",
+    "RelativePath": "api/PriceItem/userlogs",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

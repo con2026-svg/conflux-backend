@@ -23,6 +23,8 @@ namespace ConFlux.Data
 
         public DbSet<PriceType> PriceTypes { get; set; }
 
+        public DbSet<UserPriceRequestLog> UserPriceRequestLogs { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

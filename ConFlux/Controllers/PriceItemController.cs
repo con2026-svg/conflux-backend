@@ -63,8 +63,8 @@ namespace ConFlux.Controllers
             return Ok(prices);
         }
 
-
-        [HttpPost]
+           
+        [HttpPost("priceentry")]
         public async Task<IActionResult> Create([FromBody] PriceItemDto dto)
         {
             var exists = await _context.PriceItems.AnyAsync(x =>
@@ -91,8 +91,20 @@ namespace ConFlux.Controllers
 
             _context.PriceItems.Add(item);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetById), new { id = item.Id }, item);
+
+            // 🔹 Ponovo pročitaj isti red sa svim Include vezama
+            var created = await _context.PriceItems
+                .Include(p => p.ObjectType)
+                .Include(p => p.Category)
+                .Include(p => p.Region)
+                .Include(p => p.Period)
+                .Include(p => p.WorkType)
+                .Include(p => p.PriceType)
+                .FirstOrDefaultAsync(p => p.Id == item.Id);
+
+            return Ok(created); // ✅ sada Angular dobija pun objekat sa nazivima
         }
+
 
         // 🔹 READ ALL
         [HttpGet("all")]
@@ -154,6 +166,76 @@ namespace ConFlux.Controllers
             await _context.SaveChangesAsync();
             return NoContent();
         }
+ 
+        [HttpPost("savelog")]
+        public async Task<IActionResult> CreateLog([FromBody] UserPriceRequestLogDto dto)
+        {
+            var log = new UserPriceRequestLog
+            {
+              //  UserId = dto.UserId,
+                Username = dto.Username,
+                M2 = dto.M2,
+                RegionId = dto.RegionId,
+                PriceCategoryId = dto.PriceCategoryId,
+                PeriodId = dto.PeriodId,
+                Structure = dto.Structure,
+                Opis = dto.Opis,
+                Napomena = dto.Napomena,
+                ParcelData = dto.ParcelData,
+                AiPrompt = dto.AiPrompt,
+                AiResponse = dto.AiResponse
+            };
+
+            _context.UserPriceRequestLogs.Add(log);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Log uspešno sačuvan" });
+        }
+
+
+        [HttpGet("userlogs")]
+
+        [HttpGet("logs")]
+        public async Task<IActionResult> GetLogs()
+        {
+            var logs = await _context.UserPriceRequestLogs
+                .OrderByDescending(l => l.CreatedAt)
+                .Select(l => new
+                {
+                    l.Id,
+                    l.Username,
+                    l.CreatedAt,
+                    l.M2,
+                    l.Structure,
+                    l.Opis,
+                    l.Napomena,
+                    l.ParcelData,
+                    l.AiPrompt,
+                    l.AiResponse,
+
+                    // 🔹 Dovuci nazive iz drugih tabela:
+                    Region = _context.Regions
+                        .Where(r => r.Id == l.RegionId)
+                        .Select(r => r.Name)
+                        .FirstOrDefault(),
+
+                    PriceCategory = _context.Categories
+                        .Where(c => c.Id == l.PriceCategoryId)
+                        .Select(c => c.Name)
+                        .FirstOrDefault(),
+
+                    Period = _context.QuarterPeriods
+                        .Where(p => p.Id == l.PeriodId)
+                        .Select(p => "Q" + p.Quarter + " " + p.Year)
+                        .FirstOrDefault()
+                })
+                .Take(200)
+                .ToListAsync();
+
+            return Ok(logs);
+        }
+
+
 
     }
 }

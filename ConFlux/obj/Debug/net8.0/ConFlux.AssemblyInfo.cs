@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ConFlux")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+877169e25756e4d9e5e41ef555a155edb65eb08b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+effc25652d480f174dc98143cb2a394a63585c44")]
 [assembly: System.Reflection.AssemblyProductAttribute("ConFlux")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ConFlux")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
