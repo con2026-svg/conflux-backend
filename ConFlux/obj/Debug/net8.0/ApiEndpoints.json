@@ -74,6 +74,64 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ConFlux.Controllers.MaterialController",
+    "Method": "GetCategories",
+    "RelativePath": "api/Material/categories",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ConFlux.Controllers.MaterialController",
+    "Method": "GetItemsByCategory",
+    "RelativePath": "api/Material/category/{categoryId}/items",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "categoryId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ConFlux.Controllers.MaterialController",
+    "Method": "GetItemDetail",
+    "RelativePath": "api/Material/item/{itemId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "itemId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ConFlux.Controllers.MaterialController",
+    "Method": "GetPricesByItem",
+    "RelativePath": "api/Material/item/{itemId}/prices",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "itemId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ConFlux.Controllers.PriceItemController",
     "Method": "GetById",
     "RelativePath": "api/PriceItem/{id}",

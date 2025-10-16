@@ -1,4 +1,5 @@
 ﻿using ConFlux.Model;
+using ConFlux.Model.Material_price;
 using ConFlux.Model.YourApp.Models;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
@@ -22,6 +23,12 @@ namespace ConFlux.Data
         public DbSet<PriceItem> PriceItems { get; set; }
 
         public DbSet<PriceType> PriceTypes { get; set; }
+
+        public DbSet<Material> Materials { get; set; }
+        public DbSet<MaterialCategory> MaterialCategories { get; set; }
+        public DbSet<MaterialItem> MaterialItems { get; set; }
+        public DbSet<MaterialPrice> MaterialPrices { get; set; }
+
 
         public DbSet<UserPriceRequestLog> UserPriceRequestLogs { get; set; }
 
