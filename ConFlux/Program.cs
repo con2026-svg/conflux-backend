@@ -1,4 +1,5 @@
 using ConFlux.Data;
+using ConFlux.Repositories;
 using ConFlux.Services;
 using ConfluxApp.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -6,10 +7,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using OpenAI;
 using System.Text;
+using QuestPDF.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
-
+QuestPDF.Settings.License = LicenseType.Community;
 // Add services to the container.
+//builder.Services.AddScoped<IReportService, ReportService>();
+builder.Services.AddScoped<IReportRepository, ReportRepository>();
+builder.Services.AddScoped<IReportService, ReportService>();
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
