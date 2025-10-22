@@ -1,37 +1,48 @@
 ﻿using ConFlux.Data;
 using ConFlux.DTOs;
+using Microsoft.EntityFrameworkCore;
 
 namespace ConFlux.Repositories
 {
     public class ReportRepository : IReportRepository
     {
         private readonly AppDbContext _ctx;
-        public ReportRepository(AppDbContext ctx) { _ctx = ctx; }
+        public ReportRepository(AppDbContext ctx) => _ctx = ctx;
 
         public async Task<ReportDto?> GetReportAsync(int id)
         {
-            // Ovde mapiraj iz svojih tabela (PriceItem, Log itd.)
-            // Primer “na suvo” radi demo-a:
-            await Task.CompletedTask;
-            return new ReportDto
+            // 🔹 Nađi zapis iz UserPriceRequestLog tabele
+            var log = await _ctx.UserPriceRequestLogs
+                .Include(x => x.Region)
+                .Include(x => x.PriceCategory)
+                .Include(x => x.Period)
+                .FirstOrDefaultAsync(x => x.Id == id);
+
+            if (log == null)
+                return null;
+
+            // 🔹 Mapiraj u ReportDto
+            var dto = new ReportDto
             {
-                Id = id,
-                Username = "pera@example.com",
-                CreatedAt = DateTime.UtcNow,
-                M2 = 72.5m,
-                Region = "Beograd",
-                Category = "Standard",
-                Structure = "2.5 soban",
-                UserNote = "Kupatilo renovirano 2024.",
-                AiDescription = "Na osnovu unetih parametara procenjena cena je u skladu sa regionalnim trendom...",
-                KeyValues = new()
-            {
-                ("Period", "Q3 2025"),
-                ("Tip radova", "Adaptacija"),
-                ("Procena cene", "€2,150/m²"),
-                ("Ukupno", "€155,375")
-            }
+                Id = log.Id,
+                Username = log.Username,
+                CreatedAt = log.CreatedAt,
+                M2 = log.M2,
+                Region = log.Region?.Name ?? "Nepoznato",
+                Category = log.PriceCategory?.Name ?? "Nepoznato",
+                Structure = log.Structure,
+                UserNote = log.Napomena,
+                AiDescription = log.AiResponse ?? "Nema AI opisa",
+                KeyValues = new List<(string, string)>
+                {
+                    ("Period", log.Period != null ? $"Q{log.Period.Quarter} {log.Period.Year}" : "-"),
+                    ("Tip radova", log.Opis ?? "-"),
+                    ("Procena cene", $"{log.M2 * 2150m:0.00} € ukupno (primer)"),
+                    ("Površina", $"{log.M2:0.00} m²")
+                }
             };
+
+            return dto;
         }
     }
 }

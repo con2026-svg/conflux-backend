@@ -1,5 +1,6 @@
 ﻿using ConFlux.Data;
 using ConFlux.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +8,7 @@ using System.Text.Json;
 
 namespace ConFlux.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CodebooksController : ControllerBase
@@ -72,7 +74,6 @@ namespace ConFlux.Controllers
                             c.MaxArea
                         })
                         .ToListAsync());
-
                 case "quarterperiod":
                     return Ok(await _context.QuarterPeriods
                         .OrderByDescending(p => p.Year)
@@ -80,6 +81,8 @@ namespace ConFlux.Controllers
                         .Select(p => new
                         {
                             p.Id,
+                            p.Year,
+                            p.Quarter,
                             Period = $"Q{p.Quarter} {p.Year}"
                         })
                         .ToListAsync());
@@ -112,6 +115,29 @@ namespace ConFlux.Controllers
                     await _context.SaveChangesAsync();
                     return Ok(newCategory);
 
+                case "quarterperiod":
+                    {
+                        var year = data.GetProperty("year").GetInt32();
+                        var quarter = data.GetProperty("quarter").GetByte();
+
+                        // jedinstvena kombinacija (Year, Quarter)
+                        var exists = await _context.QuarterPeriods
+                            .AnyAsync(q => q.Year == year && q.Quarter == quarter);
+                        if (exists)
+                            return BadRequest("Ovaj kvartal već postoji.");
+
+                        var newQ = new QuarterPeriod
+                        {
+                            Year = year,
+                            Quarter = quarter
+                        };
+
+                        _context.QuarterPeriods.Add(newQ);
+                        await _context.SaveChangesAsync();
+
+                        return Ok(newQ);
+                    }
+
                 default:
                     return BadRequest("Dodavanje nije podržano za ovaj šifrarnik.");
             }
@@ -139,6 +165,29 @@ namespace ConFlux.Controllers
                     await _context.SaveChangesAsync();
                     return Ok(cat);
 
+                case "quarterperiod":
+                    {
+                        var qp = await _context.QuarterPeriods.FindAsync(id);
+                        if (qp == null)
+                            return NotFound();
+
+                        var newYear = data.GetProperty("year").GetInt32();
+                        var newQuarter = data.GetProperty("quarter").GetByte();
+
+                        // provera duplikata
+                        var duplicate = await _context.QuarterPeriods
+                            .AnyAsync(q => q.Id != id && q.Year == newYear && q.Quarter == newQuarter);
+                        if (duplicate)
+                            return BadRequest("Kvartal sa tim vrednostima već postoji.");
+
+                        qp.Year = newYear;
+                        qp.Quarter = newQuarter;
+
+                        await _context.SaveChangesAsync();
+                        return Ok(qp);
+                    }
+
+
                 default:
                     return BadRequest("Izmena nije podržana za ovaj šifrarnik.");
             }
@@ -163,6 +212,18 @@ namespace ConFlux.Controllers
                     _context.Categories.Remove(cat);
                     await _context.SaveChangesAsync();
                     return Ok();
+
+                case "quarterperiod":
+                    {
+                        var qp = await _context.QuarterPeriods.FindAsync(id);
+                        if (qp == null)
+                            return NotFound();
+
+                        _context.QuarterPeriods.Remove(qp);
+                        await _context.SaveChangesAsync();
+                        return Ok();
+                    }
+
 
                 default:
                     return BadRequest("Brisanje nije podržano za ovaj šifrarnik.");

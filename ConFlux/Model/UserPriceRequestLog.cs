@@ -12,8 +12,16 @@ namespace ConFlux.Model
 
         public decimal M2 { get; set; }
         public int RegionId { get; set; }
+        [ForeignKey(nameof(RegionId))]
+        public Region? Region { get; set; }
+
         public int PriceCategoryId { get; set; }
+        [ForeignKey(nameof(PriceCategoryId))]
+        public Category? PriceCategory { get; set; }
+
         public int PeriodId { get; set; }
+        [ForeignKey(nameof(PeriodId))]
+        public QuarterPeriod? Period { get; set; }
         public string Structure { get; set; } = string.Empty;
         public string? Opis { get; set; }
         public string? Napomena { get; set; }

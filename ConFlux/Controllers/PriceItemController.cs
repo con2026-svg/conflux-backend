@@ -166,13 +166,12 @@ namespace ConFlux.Controllers
             await _context.SaveChangesAsync();
             return NoContent();
         }
- 
+
         [HttpPost("savelog")]
         public async Task<IActionResult> CreateLog([FromBody] UserPriceRequestLogDto dto)
         {
             var log = new UserPriceRequestLog
             {
-              //  UserId = dto.UserId,
                 Username = dto.Username,
                 M2 = dto.M2,
                 RegionId = dto.RegionId,
@@ -189,8 +188,9 @@ namespace ConFlux.Controllers
             _context.UserPriceRequestLogs.Add(log);
             await _context.SaveChangesAsync();
 
-            return Ok(new { message = "Log uspešno sačuvan" });
+            return Ok(new { message = "Log uspešno sačuvan", id = log.Id });
         }
+
 
 
         [HttpGet("userlogs")]
