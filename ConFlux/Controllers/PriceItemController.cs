@@ -107,20 +107,27 @@ namespace ConFlux.Controllers
 
 
         // 🔹 READ ALL
-        [HttpGet("all")]
-      
+        [HttpGet("getall")]
         public async Task<IActionResult> GetAll()
         {
-            var items = await _context.PriceItems
-                .Include(p => p.ObjectType)
-                .Include(p => p.Category)
-                .Include(p => p.Region)
-                .Include(p => p.Period)
-                .Include(p => p.WorkType)
-                .Include(p => p.PriceType)
+            var logs = await _context.UserPriceRequestLogs
+                .OrderByDescending(l => l.CreatedAt)
+                .Select(l => new
+                {
+                    l.Id,
+                    l.Username,
+                    l.RegionName,
+                    l.PriceCategoryName,
+                    l.PeriodName,
+                    l.M2,
+                    l.PriceStandard,
+                    l.PricePremium,
+                    l.PriceUltra,
+                    l.CreatedAt
+                })
                 .ToListAsync();
 
-            return Ok(items);
+            return Ok(logs);
         }
 
         // 🔹 READ ONE
@@ -170,19 +177,49 @@ namespace ConFlux.Controllers
         [HttpPost("savelog")]
         public async Task<IActionResult> CreateLog([FromBody] UserPriceRequestLogDto dto)
         {
+            if (dto == null)
+                return BadRequest("Neispravan zahtev.");
+
+            // 🔹 Preuzmi nazive ako ih nema u payloadu
+            var region = await _context.Regions.FirstOrDefaultAsync(r => r.Id == dto.RegionId);
+            var category = await _context.Categories.FirstOrDefaultAsync(c => c.Id == dto.PriceCategoryId);
+            var period = await _context.QuarterPeriods.FirstOrDefaultAsync(p => p.Id == dto.PeriodId);
+
+            // 🔹 Povuci sve cene za kombinaciju (region, kategorija, period, tip objekta)
+            var prices = await _context.PriceItems
+                .Where(p =>
+                    p.RegionId == dto.RegionId &&
+                    p.CategoryId == dto.PriceCategoryId &&
+                    p.PeriodId == dto.PeriodId &&
+                    p.ObjectTypeId == dto.ObjectTypeId)
+                .Select(p => new { p.PriceTypeId, p.Price })
+                .ToListAsync();
+
+            // 🔹 Mapiraj po tipovima
+            decimal priceStandard = prices.FirstOrDefault(p => p.PriceTypeId == 1)?.Price ?? 0;
+            decimal pricePremium = prices.FirstOrDefault(p => p.PriceTypeId == 2)?.Price ?? 0;
+            decimal priceUltra = prices.FirstOrDefault(p => p.PriceTypeId == 3)?.Price ?? 0;
+
+            // 🔹 Kreiraj log sa snapshot vrednostima
             var log = new UserPriceRequestLog
             {
                 Username = dto.Username,
                 M2 = dto.M2,
                 RegionId = dto.RegionId,
+                RegionName = region?.Name ?? string.Empty,
                 PriceCategoryId = dto.PriceCategoryId,
+                PriceCategoryName = category?.Name ?? string.Empty,
                 PeriodId = dto.PeriodId,
+                PeriodName = period != null ? $"Q{period.Quarter} {period.Year}" : string.Empty,
                 Structure = dto.Structure,
                 Opis = dto.Opis,
                 Napomena = dto.Napomena,
                 ParcelData = dto.ParcelData,
                 AiPrompt = dto.AiPrompt,
-                AiResponse = dto.AiResponse
+                AiResponse = dto.AiResponse,
+                PriceStandard = priceStandard,
+                PricePremium = pricePremium,
+                PriceUltra = priceUltra
             };
 
             _context.UserPriceRequestLogs.Add(log);
@@ -193,9 +230,8 @@ namespace ConFlux.Controllers
 
 
 
-        [HttpGet("userlogs")]
 
-        [HttpGet("logs")]
+        [HttpGet("userlogs")]
         public async Task<IActionResult> GetLogs()
         {
             var logs = await _context.UserPriceRequestLogs
@@ -212,28 +248,20 @@ namespace ConFlux.Controllers
                     l.ParcelData,
                     l.AiPrompt,
                     l.AiResponse,
-
-                    // 🔹 Dovuci nazive iz drugih tabela:
-                    Region = _context.Regions
-                        .Where(r => r.Id == l.RegionId)
-                        .Select(r => r.Name)
-                        .FirstOrDefault(),
-
-                    PriceCategory = _context.Categories
-                        .Where(c => c.Id == l.PriceCategoryId)
-                        .Select(c => c.Name)
-                        .FirstOrDefault(),
-
-                    Period = _context.QuarterPeriods
-                        .Where(p => p.Id == l.PeriodId)
-                        .Select(p => "Q" + p.Quarter + " " + p.Year)
-                        .FirstOrDefault()
+                    l.PriceStandard,
+                    l.PricePremium,
+                    l.PriceUltra,
+                    l.RegionName,
+                    l.PriceCategoryName,
+                    l.PeriodName
                 })
                 .Take(200)
                 .ToListAsync();
 
             return Ok(logs);
         }
+
+
 
 
 

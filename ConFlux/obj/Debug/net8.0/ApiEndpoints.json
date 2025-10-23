@@ -255,17 +255,7 @@
   {
     "ContainingType": "ConFlux.Controllers.PriceItemController",
     "Method": "GetAll",
-    "RelativePath": "api/PriceItem/all",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "ConFlux.Controllers.PriceItemController",
-    "Method": "GetLogs",
-    "RelativePath": "api/PriceItem/logs",
+    "RelativePath": "api/PriceItem/getall",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

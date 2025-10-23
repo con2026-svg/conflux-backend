@@ -409,7 +409,7 @@
         }
       }
     },
-    "/api/PriceItem/all": {
+    "/api/PriceItem/getall": {
       "get": {
         "tags": [
           "PriceItem"
@@ -537,18 +537,6 @@
       }
     },
     "/api/PriceItem/userlogs": {
-      "get": {
-        "tags": [
-          "PriceItem"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/PriceItem/logs": {
       "get": {
         "tags": [
           "PriceItem"
@@ -703,6 +691,10 @@
           "m2": {
             "type": "number",
             "format": "double"
+          },
+          "objectTypeId": {
+            "type": "integer",
+            "format": "int32"
           },
           "regionId": {
             "type": "integer",
