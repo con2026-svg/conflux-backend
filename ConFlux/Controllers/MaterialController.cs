@@ -1,4 +1,6 @@
 ﻿using ConFlux.Data;
+using ConFlux.DTOs;
+using ConFlux.Model.Material_price;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -68,6 +70,8 @@ namespace ConFlux.Controllers
                 .ThenBy(p => p.Quarter)
                 .Select(p => new
                 {
+                    p.Id,
+                    p.ItemId,
                     p.Year,
                     p.Quarter,
                     p.Price
@@ -79,6 +83,7 @@ namespace ConFlux.Controllers
 
             return Ok(prices);
         }
+
 
         // 🔹 4. (Opcionalno) Detalj stavke sa kategorijom
         // GET: api/Material/item/5
@@ -101,5 +106,86 @@ namespace ConFlux.Controllers
             });
         }
 
+
+        [HttpPost("price")]
+        public async Task<IActionResult> AddPrice([FromBody] MaterialPriceDto dto)
+        {
+            var price = new MaterialPrice
+            {
+                ItemId = dto.ItemId,
+                Year = dto.Year,
+                Quarter = dto.Quarter,
+                Price = dto.Price
+            };
+
+            try
+            {
+                _context.MaterialPrices.Add(price);
+                await _context.SaveChangesAsync();
+                return Ok(new { message = "Cena uspešno dodata.", id = price.Id });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.InnerException?.Message ?? ex.Message });
+            }
+        }
+
+
+        // PUT: api/Material/price/5
+        [HttpPut("price/{id}")]
+        public async Task<IActionResult> UpdatePrice(int id, [FromBody] MaterialPrice model)
+        {
+            try
+            {
+                // 👇 ovde EF vidi tačan tip koji stiže iz requesta
+                Console.WriteLine(">>> Model type: " + model.GetType().FullName);
+
+                var existing = await _context.MaterialPrices.FirstOrDefaultAsync(p => p.Id == id);
+                if (existing == null)
+                    return NotFound($"Cena sa ID={id} nije pronađena.");
+
+                existing.ItemId = model.ItemId;
+                existing.Year = model.Year;
+                existing.Quarter = model.Quarter;
+                existing.Price = model.Price;
+
+                await _context.SaveChangesAsync();
+
+                return Ok(new { message = "Cena uspešno ažurirana." });
+            }
+            catch (Exception ex)
+            {
+                // 🔹 ako EF i dalje puca zbog MaterialId — uhvati i prikaži detaljnu poruku
+                Console.WriteLine(">>> ERROR: " + (ex.InnerException?.Message ?? ex.Message));
+                return BadRequest(new { message = ex.InnerException?.Message ?? ex.Message });
+            }
+        }
+
+
+
+        // DELETE: api/Material/price/5
+        [HttpDelete("price/{id}")]
+        public async Task<IActionResult> DeletePrice(int id)
+        {
+            var existing = await _context.MaterialPrices.FindAsync(id);
+            if (existing == null)
+                return NotFound();
+
+            _context.MaterialPrices.Remove(existing);
+            await _context.SaveChangesAsync();
+            return Ok(new { message = "Cena obrisana" });
+        }
+
+
+        [HttpGet("test-mp")]
+        public async Task<IActionResult> TestMP()
+        {
+            var columns = await _context.Database
+                .SqlQueryRaw<string>(
+                    "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'MaterialPrice'")
+                .ToListAsync();
+
+            return Ok(columns);
+        }
     }
 }

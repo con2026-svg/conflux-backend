@@ -24,7 +24,7 @@ namespace ConFlux.Data
 
         public DbSet<PriceType> PriceTypes { get; set; }
 
-        public DbSet<Material> Materials { get; set; }
+    //    public DbSet<Material> Materials { get; set; }
         public DbSet<MaterialCategory> MaterialCategories { get; set; }
         public DbSet<MaterialItem> MaterialItems { get; set; }
         public DbSet<MaterialPrice> MaterialPrices { get; set; }
@@ -49,6 +49,10 @@ namespace ConFlux.Data
                 .WithMany(r => r.UserRoles)
                 .HasForeignKey(ur => ur.RoleId);
 
+            modelBuilder.Entity<MaterialPrice>()
+     .ToTable("MaterialPrice")
+     .Property(p => p.ItemId)
+     .HasColumnName("ItemId");
 
         }
     }

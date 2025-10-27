@@ -7,10 +7,10 @@ namespace ConFlux.Model.Material_price
     public class MaterialPrice
     {
         public int Id { get; set; }
-
-        [ForeignKey(nameof(Item))]
         public int ItemId { get; set; }
-        public MaterialItem Item { get; set; } = null!;
+
+        [ForeignKey(nameof(ItemId))]
+        public MaterialItem? Item { get; set; }
 
         public int Year { get; set; }
 

@@ -200,6 +200,69 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ConFlux.Controllers.MaterialController",
+    "Method": "AddPrice",
+    "RelativePath": "api/Material/price",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "ConFlux.DTOs.MaterialPriceDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ConFlux.Controllers.MaterialController",
+    "Method": "UpdatePrice",
+    "RelativePath": "api/Material/price/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "ConFlux.Model.Material_price.MaterialPrice",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ConFlux.Controllers.MaterialController",
+    "Method": "DeletePrice",
+    "RelativePath": "api/Material/price/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ConFlux.Controllers.MaterialController",
+    "Method": "TestMP",
+    "RelativePath": "api/Material/test-mp",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ConFlux.Controllers.PriceItemController",
     "Method": "GetById",
     "RelativePath": "api/PriceItem/{id}",
