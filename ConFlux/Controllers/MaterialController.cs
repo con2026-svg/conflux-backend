@@ -3,6 +3,7 @@ using ConFlux.DTOs;
 using ConFlux.Model.Material_price;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace ConFlux.Controllers
@@ -124,9 +125,16 @@ namespace ConFlux.Controllers
                 await _context.SaveChangesAsync();
                 return Ok(new { message = "Cena uspešno dodata.", id = price.Id });
             }
-            catch (Exception ex)
+            catch (DbUpdateException ex)
             {
-                return BadRequest(new { message = ex.InnerException?.Message ?? ex.Message });
+                if (ex.InnerException is SqlException sqlEx && sqlEx.Number == 2627)
+                {
+                    // 2627 = Violation of UNIQUE KEY constraint
+                    return Conflict(new { message = "❗ Cenovnik za ovaj kvartal već postoji." });
+                }
+
+                // ostali SQL errori
+                return StatusCode(500, new { message = "Greška prilikom upisa cenovnika.", details = ex.Message });
             }
         }
 
